@@ -156,7 +156,6 @@ class WebSocketController extends Controller implements OnMessageInterface, OnOp
                 $server->push($fd, json_encode($message));
             }
         }
-
     }
 
     public function sendAllExceptMine($message,$mine_fd,$server){

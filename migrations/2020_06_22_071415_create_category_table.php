@@ -18,6 +18,7 @@ class CreateCategoryTable extends Migration
             $table->integer('created_at')->comment('创建时间');
             $table->integer('updated_at')->comment('更新时间');
         });
+        \Hyperf\DbConnection\Db::statement("alter table `category` comment'分类表'");
     }
 
     /**

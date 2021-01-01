@@ -17,8 +17,6 @@ class IndexController extends AbstractController
     public function index()
     {
 
-
-
         $redis = $this->container->get(\Redis::class);
         $fdList = $redis->sMembers('websocket_sjd_1');
 

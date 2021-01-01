@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Model\Category;
 use Hyperf\Di\Annotation\Inject;
 use App\Controller\Controller;
 use App\Model\Article;
@@ -24,20 +25,23 @@ class ArticleController extends Controller{
 
     public function index(){
 
-        $list = $this->article->all();
+        $param = $this->request->inputs(['page','pageSize']);
+        $this->validatorFrom([
+        ]);
+        $list = $this->article->paginate((int)optional($param)['pageSize'] ?? DEFAULT_PAGE_SIZE);
 
-        return $this->success($list);
+        $category = Category::get(['id','cate_name']);
+        return $this->success($list,'success',$category);
     }
 
 
     public function store(){
 
-        $param = $this->request->all(['title','content','rotation_chart','cate_id']);
+        $param = $this->request->inputs(['title','content','cate_id']);
         $this->validatorFrom([
             'title' => 'required',
             'content' => 'required',
-            'rotation_chart' => 'required',
-            'cate_id' => 'required',
+            'cate_id' => 'required|int',
         ]);
         $this->article->create($param);
 
@@ -46,7 +50,7 @@ class ArticleController extends Controller{
 
     public function update($id){
 
-        $param = $this->request->all(['title','content','rotation_chart','cate_id']);
+        $param = $this->request->inputs(['title','content','cate_id']);
         $this->article->where('id',$id)->update($param);
         return $this->success();
 

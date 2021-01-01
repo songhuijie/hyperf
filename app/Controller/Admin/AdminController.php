@@ -56,6 +56,7 @@ class AdminController extends Controller{
             return $this->success();
 
         }
+
         return $this->success('添加失败');
 
     }

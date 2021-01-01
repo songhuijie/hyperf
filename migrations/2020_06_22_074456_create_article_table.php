@@ -15,11 +15,11 @@ class CreateArticleTable extends Migration
             $table->bigIncrements('id');
             $table->string('title',50)->comment('文章标题');
             $table->text('content')->comment('文章内容');
-            $table->string('rotation_chart')->comment('轮播图');
             $table->integer('cate_id')->default(0)->comment('类型-id');
             $table->integer('created_at')->comment('创建时间');
             $table->integer('updated_at')->comment('更新时间');
         });
+        \Hyperf\DbConnection\Db::statement("alter table `article` comment'文章表'");
     }
 
     /**

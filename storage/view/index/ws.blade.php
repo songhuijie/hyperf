@@ -30,8 +30,8 @@
          var username = '';
          //判断当前浏览器是否支持WebSocket
          if ('WebSocket' in window) {
-             {{--websocket = new WebSocket("ws://127.0.0.1:9502/ws?id={{$id}}");--}}
-             websocket = new WebSocket("ws://websocket.hyperf.io/ws?id={{$id}}");
+             {{--websocket = new WebSocket("ws://127.0.0.1:9503/ws?id={{$id}}");--}}
+             websocket = new WebSocket("ws://websocket.hyperf.com/ws?id={{$id}}");
          }
          else {
              alert('当前浏览器 Not support websocket')

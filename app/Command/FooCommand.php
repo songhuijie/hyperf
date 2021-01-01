@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
+use App\Model\Category;
 use App\Model\Test;
 use App\Model\User;
 use Hyperf\Command\Command as HyperfCommand;
@@ -34,30 +35,33 @@ class FooCommand extends HyperfCommand
         $this->setDescription('Hyperf Demo Command');
     }
 
+
     public function handle()
     {
 
 
-        $argument = $this->input->getArgument('name') ?? 'World';
+        var_dump(Category::get(['id','cate_name'])->toArray());
+
+//        $argument = $this->input->getArgument('name') ?? 'World';
 //
 //
-        echo '开始';
-        co(function(){
-            $channel = new \Swoole\Coroutine\Channel();
-            co(function() use($channel){
-                sleep(2);
-                $user = User::all();
-                var_dump(date('Y-m-d H:i:s').'查询user完成');
-            });
-
-            co(function() use($channel){
-               sleep(2);
-               $test = Test::all();
-               var_dump(date('Y-m-d H:i:s').'查询test完成');
-
-            });
-
-        });
+//        echo '开始';
+//        co(function(){
+//            $channel = new \Swoole\Coroutine\Channel();
+//            co(function() use($channel){
+//                sleep(2);
+//                $user = User::all();
+//                var_dump(date('Y-m-d H:i:s').'查询user完成');
+//            });
+//
+//            co(function() use($channel){
+//               sleep(2);
+//               $test = Test::all();
+//               var_dump(date('Y-m-d H:i:s').'查询test完成');
+//
+//            });
+//
+//        });
 //        co(function() use($argument){
 //
 //                $channel = new \Swoole\Coroutine\Channel();

@@ -23,13 +23,17 @@ class CategoryController extends Controller{
 
     public function index(){
 
-        $list = $this->category->all();
+        $param = $this->request->inputs(['page','pageSize']);
+        $this->validatorFrom([
+        ]);
+
+        $list = $this->category->paginate((int)optional($param)['pageSize'] ?? DEFAULT_PAGE_SIZE);
         return $this->success($list);
     }
 
     public function store(){
 
-        $param = $this->request->all(['cate_name','sort']);
+        $param = $this->request->inputs(['cate_name','sort']);
         $this->validatorFrom([
             'cate_name' => 'required',
         ]);
@@ -39,7 +43,10 @@ class CategoryController extends Controller{
 
     public function update($id){
 
-        $param = $this->request->all(['cate_name','sort']);
+        $param = $this->request->inputs(['cate_name','sort']);
+        $this->validatorFrom([
+            'cate_name' => 'required',
+        ]);
         $this->category->where('id',$id)->update($param);
         return $this->success();
 

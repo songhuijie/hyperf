@@ -34,13 +34,14 @@ class Controller
      *
      * @param        $data
      * @param string $message
+     * @param array $extra
      *
      * @return array
      */
-    public function success($data = [], $message = 'success')
+    public function success($data = [], $message = 'success',$extra = [])
     {
         $code = $this->response->getStatusCode();
-        return ['msg' => $message, 'code' => $code, 'data' => $data];
+        return ['msg' => $message, 'code' => $code, 'data' => $data, 'extra'=>$extra];
     }
     /**
      * 请求失败.
@@ -73,7 +74,7 @@ class Controller
         ];
         $defaultRule = [
             'page' => 'int',
-            'limit' => 'int',
+            'pageSize' => 'int',
         ];
 
         // Do something
